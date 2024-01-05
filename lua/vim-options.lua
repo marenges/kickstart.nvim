@@ -48,3 +48,13 @@ vim.cmd('set shiftwidth=2')
 -- See `:help mapleader`
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Filetypes
+vim.filetype.add({
+  extension = {
+    jenkinsfile = 'groovy',
+  },
+  filename = {
+    ['Jenkinsfile'] = 'groovy',
+  },
+})

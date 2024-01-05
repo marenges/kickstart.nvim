@@ -11,6 +11,15 @@ return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+
+  -- Setup neovim lua configuration
+  { "folke/neodev.nvim",
+    opts = {},
+    config = function ()
+      require('neodev').setup()
+    end
+  },
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
