@@ -31,7 +31,7 @@ return {
       'folke/neodev.nvim',
     },
     config = function()
-
+      require('plugins.configs.lsp')
     end
   },
 }
