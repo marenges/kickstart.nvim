@@ -4,6 +4,7 @@
 return {
   -- NOTE: First, some plugins that don't require any configuration
 
+  'MTDL9/vim-log-highlighting',
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -71,7 +72,6 @@ return {
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
