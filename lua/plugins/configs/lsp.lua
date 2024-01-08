@@ -38,7 +38,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-d>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<C-o>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -65,6 +65,7 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
+  -- clang-format = {},
   -- gopls = {},
   pyright = {},
   -- rust_analyzer = {},
@@ -79,9 +80,9 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
-  groovyls = {
-    filetypes = { 'groovy', 'Jenkinsfile', 'jenkinsfile' },
-  },
+  -- groovyls = {
+  --   filetypes = { 'groovy', 'Jenkinsfile', 'jenkinsfile' },
+  -- },
 }
 
 
