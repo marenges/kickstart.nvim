@@ -8,10 +8,10 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('i', '<C-b>', '<ESC>^i', { desc = 'Beginning of line' })
 vim.keymap.set('i', '<C-e>', '<End>', { desc = 'End of line' })
 
--- vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left' })
--- vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down' })
--- vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up' })
--- vim.keymap.set('i', '<C-l>', '<Down>', { desc = 'Move down' })
+vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left' })
+vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down' })
+vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up' })
+vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

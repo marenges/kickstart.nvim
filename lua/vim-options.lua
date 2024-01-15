@@ -30,9 +30,9 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+-- Decrease update time 
+vim.o.updatetime = 4000 -- default value: 4000
+vim.o.timeoutlen = 1000 -- default value: 1000
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
