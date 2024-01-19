@@ -105,3 +105,17 @@ local function live_grep_git_root()
 end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
+
+-- netrw
+local using_file_tree = false
+if using_file_tree then
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+else
+  vim.g.netrw_keepdir = 1     -- Keep current dir and browsing dir synced
+  vim.g.netrw_winsize = 30    -- Size of netrw windown when creating a split in %
+  vim.g.netrw_banner = 0      -- Use 'I' to show banner in netrw
+--  vim.g.netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+' -- hide dot-files on loaded
+  vim.keymap.set('n', '<C-n>', '<cmd> :Lexplore <CR>', { desc = 'Open file explorer' })
+end
+-- disable netrw when using nvim-tree
