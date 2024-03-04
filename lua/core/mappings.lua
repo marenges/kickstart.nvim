@@ -7,12 +7,12 @@ M.tabufline = {
 
   n = {
     -- cycle through buffers
-    ["<tab>"] = {
-      function()
-        require("custom.tabufline").tabuflineNext()
-      end,
-      "Goto next buffer",
-    },
+    -- ["<C-tab>"] = {
+    --   function()
+    --     require("custom.tabufline").tabuflineNext()
+    --   end,
+    --   "Goto next buffer",
+    -- },
 
     ["<S-tab>"] = {
       function()

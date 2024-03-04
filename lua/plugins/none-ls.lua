@@ -6,6 +6,7 @@ return {
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.yapf, -- .with({ extra_args='-i' }),
+				null_ls.builtins.formatting.isort,
 				null_ls.builtins.diagnostics.pylint.with({ extra_args={'--disable=R,C' }}),
 			},
 		})

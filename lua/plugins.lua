@@ -3,7 +3,6 @@
 --
 return {
   -- NOTE: First, some plugins that don't require any configuration
-
   {'MTDL9/vim-log-highlighting',
     lazy = true,
   },
@@ -72,6 +71,20 @@ return {
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+
+  {
+    -- Auto pairs and closes brackets
+    'm4xshen/autoclose.nvim', opts = {}
+  },
+
+  { -- Getting you where you want
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function ()
+      require('plugins.configs.harpoon')
+    end
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.

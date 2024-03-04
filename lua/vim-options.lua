@@ -49,16 +49,6 @@ vim.cmd('set shiftwidth=2')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Filetypes
-vim.filetype.add({
-  extension = {
-    jenkinsfile = 'groovy',
-  },
-  filename = {
-    ['Jenkinsfile'] = 'groovy',
-  },
-})
-
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -107,14 +97,14 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- netrw
-local using_file_tree = false
+local using_file_tree = true
 if using_file_tree then
   vim.g.loaded_netrw = 1
   vim.g.loaded_netrwPlugin = 1
 else
   vim.g.netrw_keepdir = 1     -- Keep current dir and browsing dir synced
   vim.g.netrw_winsize = 30    -- Size of netrw windown when creating a split in %
-  vim.g.netrw_banner = 0      -- Use 'I' to show banner in netrw
+  -- vim.g.netrw_banner = 0      -- Use 'I' to show banner in netrw
 --  vim.g.netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+' -- hide dot-files on loaded
   vim.keymap.set('n', '<C-n>', '<cmd> :Lexplore <CR>', { desc = 'Open file explorer' })
 end
