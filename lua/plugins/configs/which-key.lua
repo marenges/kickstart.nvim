@@ -8,6 +8,10 @@ require('which-key').register {
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+  ['<leader>1'] = "which_key_ignore",
+  ['<leader>2'] = "which_key_ignore",
+  ['<leader>3'] = "which_key_ignore",
+  ['<leader>4'] = "which_key_ignore",
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work

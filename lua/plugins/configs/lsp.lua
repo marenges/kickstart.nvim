@@ -67,7 +67,18 @@ local servers = {
   clangd = {},
   -- clang-format = {},
   -- gopls = {},
-  pyright = {},
+  pyright = {
+    python = {
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportCallIssue = 'none',
+          reportOptionalCall = 'none',
+          -- reportOptionalMemberAccess = 'none',
+        },
+      },
+    },
+  },
+
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },

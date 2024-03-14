@@ -32,6 +32,6 @@ return {
     },
     config = function()
       require('plugins.configs.lsp')
-    end
+    end,
   },
 }
