@@ -10,6 +10,8 @@ return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- coding assistant, AI
+  'github/copilot.vim',
 
   -- Setup neovim lua configuration
   { 'folke/neodev.nvim',
@@ -85,6 +87,13 @@ return {
       require('plugins.configs.harpoon')
     end
   },
+
+  { -- BufDelete without closing window or messing up the layout
+     'famiu/bufdelete.nvim',
+    config = function ()
+      vim.keymap.set('n', '<leader>x', vim.cmd.Bdelete, { desc = 'Delete buffer' })
+    end
+  }
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.

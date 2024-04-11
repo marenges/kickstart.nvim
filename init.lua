@@ -31,7 +31,6 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup('plugins', {})
 -- require('custom.git')
-require('custom.tabufline.lazyload')
 -- [[ Basic Keymaps ]]
 require('mappings')
 
