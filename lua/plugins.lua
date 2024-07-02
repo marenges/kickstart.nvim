@@ -2,7 +2,6 @@
 --  You can configure plugins using the `config` key.
 --
 return {
-  -- NOTE: First, some plugins that don't require any configuration
   {'MTDL9/vim-log-highlighting',
     lazy = true,
   },
@@ -11,7 +10,15 @@ return {
   'tpope/vim-sleuth',
 
   -- coding assistant, AI
-  'github/copilot.vim',
+  { 'github/copilot.vim',
+    config = function ()
+      vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
+    end
+  },
 
   -- Setup neovim lua configuration
   { 'folke/neodev.nvim',
@@ -39,8 +46,8 @@ return {
   --   },
   -- },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',
+  { -- Useful plugin to show you pending keybinds.
+    'folke/which-key.nvim',
     opts = {},
     config = function ()
       require('plugins.configs.which-key')
@@ -48,8 +55,7 @@ return {
     enabled = true,
   },
 
-  {
-    -- Set lualine as statusline
+  { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
@@ -62,8 +68,7 @@ return {
     },
   },
 
-  {
-    -- Add indentation guides even on blank lines
+  { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
@@ -74,8 +79,7 @@ return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  {
-    -- Auto pairs and closes brackets
+  { -- Auto pairs and closes brackets
     'm4xshen/autoclose.nvim', opts = {}
   },
 
@@ -93,7 +97,8 @@ return {
     config = function ()
       vim.keymap.set('n', '<leader>x', vim.cmd.Bdelete, { desc = 'Delete buffer' })
     end
-  }
+  },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.

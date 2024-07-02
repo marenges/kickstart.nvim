@@ -24,12 +24,14 @@ return {
         end
 
         -- Navigation
+        local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
         map({ 'n', 'v' }, ']c', function()
           if vim.wo.diff then
             return ']c'
           end
           vim.schedule(function()
-            gs.next_hunk()
+            next_hunk_repeat()
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Jump to next hunk' })
@@ -39,7 +41,8 @@ return {
             return '[c'
           end
           vim.schedule(function()
-            gs.prev_hunk()
+            -- gs.prev_hunk()
+            prev_hunk_repeat()
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Jump to previous hunk' })
