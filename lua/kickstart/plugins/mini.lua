@@ -32,6 +32,14 @@ return {
       return '%2l:%-2v'
     end
 
+    local files = require 'mini.files'
+    files.setup()
+    local minifiles_toggle = function()
+      if not files.close() then
+        files.open(vim.api.nvim_buf_get_name(0))
+      end
+    end
+    vim.keymap.set('n', '\\', minifiles_toggle, { desc = 'Toggle filetree' })
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
   end,
