@@ -32,6 +32,7 @@ return {
       return '%2l:%-2v'
     end
 
+    -- File tree.
     local files = require 'mini.files'
     files.setup()
     local minifiles_toggle = function()
@@ -40,6 +41,21 @@ return {
       end
     end
     vim.keymap.set('n', '\\', minifiles_toggle, { desc = 'Toggle filetree' })
+
+    -- Welcome screen
+    local starter = require 'mini.starter'
+    local builtin = require 'telescope.builtin'
+    starter.setup {
+      items = {
+        starter.sections.builtin_actions(),
+        starter.sections.recent_files(7, true),
+        starter.sections.recent_files(7, false),
+        { name = 'Find file', action = builtin.find_files, section = 'Telescope' },
+        -- After setting up 'mini.session', you can use:
+        starter.sections.sessions(5, true),
+      },
+      header = table.concat({ 'Welcome to Nvim!' }, '\n'),
+    }
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
   end,
