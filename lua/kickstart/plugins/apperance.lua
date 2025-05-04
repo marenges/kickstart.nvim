@@ -10,14 +10,14 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
         styles = {
-          -- comments = { italic = false }, -- Disable italics in comments
+          comments = { italic = true }, -- Disable italics in comments
         },
       }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 
@@ -30,8 +30,8 @@ return {
         style = 'dark', -- Options: 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'
         toggle_style_list = { 'dark', 'light' }, -- List of styles to toggle between
       }
-      vim.cmd.colorscheme 'onedark'
-      vim.keymap.set('n', '<leader>ts', require('onedark').toggle, { desc = '[T]oggle [S]tyle' })
+      -- vim.cmd.colorscheme 'onedark'
+      -- vim.keymap.set('n', '<leader>ts', require('onedark').toggle, { desc = '[T]oggle [S]tyle' })
     end,
   },
   -- Highlight todo, notes, etc in comments
