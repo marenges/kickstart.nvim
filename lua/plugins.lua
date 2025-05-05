@@ -73,6 +73,7 @@ return {
   -- require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   require 'kickstart.plugins.harpoon',
+  require 'kickstart.plugins.lazygit',
   require 'kickstart.plugins.lsp',
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',

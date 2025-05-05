@@ -32,7 +32,14 @@ return {
         files.open(vim.api.nvim_buf_get_name(0))
       end
     end
-    vim.keymap.set('n', '\\', minifiles_toggle, { desc = 'Toggle filetree' })
+    vim.keymap.set('n', '\\', function ()
+      if vim.api.nvim_buf_get_name(0):match('^ministarter:') then
+        starter.close()
+        files.open(vim.fn.getcwd())
+      else
+        minifiles_toggle()
+      end
+    end, { desc = 'Toggle filetree' })
 
     -- Session management
     require('mini.sessions').setup()
