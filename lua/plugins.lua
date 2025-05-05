@@ -1,69 +1,36 @@
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
 return {
-  {'MTDL9/vim-log-highlighting',
-    lazy = true,
-  },
 
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-
-  -- coding assistant, AI
-  { 'github/copilot.vim',
-    config = function ()
-      vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
-        expr = true,
-        replace_keycodes = false,
-      })
-      vim.g.copilot_no_tab_map = true
-    end
-  },
-
-  -- Setup neovim lua configuration
-  { 'folke/neodev.nvim',
-    opts = {},
-    config = function ()
-      require('neodev').setup()
-    end
-  },
-
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
-  -- { -- LSP Configuration & Plugins
-  --   'neovim/nvim-lspconfig',
-  --   dependencies = {
-  --     -- Automatically install LSPs to stdpath for neovim
-  --     { 'williamboman/mason.nvim', config = true },
-  --     'williamboman/mason-lspconfig.nvim',
+  -- NOTE: Plugins can also be added by using a table,
+  -- with the first argument being the link and the following
+  -- keys can be used to configure plugin behavior/loading/etc.
   --
-  --     -- Useful status updates for LSP
-  --     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-  --     { 'j-hui/fidget.nvim', opts = {} },
+  -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
-  --     -- Additional lua configuration, makes nvim stuff amazing!
-  --     'folke/neodev.nvim',
-  --   },
-  -- },
 
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
-    opts = {},
-    config = function ()
-      require('plugins.configs.which-key')
-    end,
-    enabled = true,
-  },
-
-  { -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<leader>f',
+        function()
+          require('conform').format { async = true, lsp_format = 'fallback' }
+        end,
+        mode = '',
+        desc = '[F]ormat buffer',
+      },
+    },
     opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
+      notify_on_error = false,
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        -- Conform can also run multiple formatters sequentially
+        python = { "isort", "black" },
+        --
+        -- You can use 'stop_after_first' to run the first available formatter from the list
+        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+
       },
     },
   },
@@ -75,42 +42,54 @@ return {
     main = 'ibl',
     opts = {},
   },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
-  { -- Auto pairs and closes brackets
-    'm4xshen/autoclose.nvim', opts = {}
-  },
-
-  { -- Getting you where you want
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function ()
-      require('plugins.configs.harpoon')
-    end
-  },
-
   { -- BufDelete without closing window or messing up the layout
-     'famiu/bufdelete.nvim',
-    config = function ()
+    'famiu/bufdelete.nvim',
+    config = function()
       vim.keymap.set('n', '<leader>x', vim.cmd.Bdelete, { desc = 'Delete buffer' })
-    end
+    end,
   },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+  -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  -- coding assistant, AI
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
+  -- Use this plugin to navigate between tmux and vim splits
+  'christoomey/vim-tmux-navigator',
+
+  -- 
+  require 'kickstart.plugins.apperance',
+  require 'kickstart.plugins.blink',
   -- require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.lint',
+  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.harpoon',
+  require 'kickstart.plugins.lazygit',
+  require 'kickstart.plugins.lsp',
+  require 'kickstart.plugins.mini',
+  require 'kickstart.plugins.treesitter',
+  require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.which-key',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+  --    This is the easiest way to modularize your config.
   --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
+  --
+  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
+  -- Or use telescope!
+  -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
+  -- you can continue same window with `<space>sr` which resumes last telescope search
+
 }
