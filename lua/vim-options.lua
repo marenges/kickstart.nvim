@@ -132,3 +132,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.deprecate = function() end
+
